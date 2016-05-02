@@ -379,6 +379,7 @@ tagsInput.directive('tagsInput', function($timeout, $document, $window, $q, tags
                     scope.newTag.invalid = null;
                 })
                 .on('input-focus', function() {
+                    suggestionList.load(tagsInput.getCurrentTagText(), tagsInput.getTags());
                     element.triggerHandler('focus');
                     ngModelCtrl.$setValidity('leftoverText', true);
                 })
