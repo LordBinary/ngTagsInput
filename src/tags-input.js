@@ -1,6 +1,6 @@
 'use strict';
 
-/**
+/**UPDATE
  * @ngdoc directive
  * @name tagsInput
  * @module ngTagsInput
