@@ -330,6 +330,7 @@ tagsInput.directive('tagsInput', ["$timeout", "$document", "$window", "tagsInput
                     },
                     focus: function() {
                         if (scope.hasFocus) {
+                            events.trigger('input-click');
                             return;
                         }
 
