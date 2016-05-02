@@ -723,11 +723,15 @@ tagsInput.directive('autoComplete', ["$document", "$timeout", "$sce", "$q", "tag
                     }
                 })
                 .on('input-click', function() {
-                    var value = tagsInput.getCurrentTagText();
-                    if (options.loadOnFocus && shouldLoadSuggestions(value)) {
-                        suggestionList.load(value, tagsInput.getTags());
+                    if(!suggestionList.visible){
+                        var value = tagsInput.getCurrentTagText();
+                        if (options.loadOnFocus && shouldLoadSuggestions(value)) {
+                            suggestionList.load(value, tagsInput.getTags());
+                        }
+                        suggestionList.load(tagsInput.getCurrentTagText(), tagsInput.getTags());
                     }
-                    suggestionList.load(tagsInput.getCurrentTagText(), tagsInput.getTags());
+                    else
+                        suggestionList.reset();
                 })
                 .on('input-focus', function() {
                     var value = tagsInput.getCurrentTagText();
