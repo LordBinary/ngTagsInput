@@ -366,6 +366,12 @@ tagsInput.directive('tagsInput', ["$timeout", "$document", "$window", "tagsInput
                             return;
                         }
                         input[0].focus();
+                        if (scope.numTags && (scope.tags && scope.numTags == scope.tags.length) || scope.numTags==0)
+                            events.trigger('suggestion-list-toggle');
+                        if (scope.tags)
+                            scope.numTags = scope.tags.length;
+                        else
+                            scope.numTags = 0;
                     }
                 },
                 tag: {
@@ -717,9 +723,9 @@ tagsInput.directive('autoComplete', ["$document", "$timeout", "$sce", "$q", "tag
                 .on('input-blur', function() {
                     suggestionList.reset();
                 })
-                .on('tag-added tag-removed invalid-tag', function() {
+                .on('tag-added tag-removed invalid-tag', function () {
                     suggestionList.reset();
-                    tagsInput.blurInput();
+                    //tagsInput.blurInput(); 
                 })
                 .on('input-change', function(value) {
                     if (shouldLoadSuggestions(value)) {
@@ -727,6 +733,14 @@ tagsInput.directive('autoComplete', ["$document", "$timeout", "$sce", "$q", "tag
                     }
                     else {
                         suggestionList.reset();
+                    }
+                })
+                .on('suggestion-list-toggle', function () {
+                    if(suggestionList.visible) {
+                        suggestionList.reset();
+                    }
+                    else {
+                        suggestionList.load('', tagsInput.getTags());
                     }
                 })
                 //.on('input-click', function() {
