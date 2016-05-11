@@ -366,7 +366,7 @@ tagsInput.directive('tagsInput', ["$timeout", "$document", "$window", "tagsInput
                             return;
                         }
                         input[0].focus();
-                        if (scope.numTags && (scope.tags && scope.numTags == scope.tags.length) || scope.numTags==0)
+                        if (scope.numTags && (scope.tags && scope.numTags == scope.tags.length) || (scope.numTags==0 && !scope.tags))
                             events.trigger('suggestion-list-toggle');
                         if (scope.tags)
                             scope.numTags = scope.tags.length;
