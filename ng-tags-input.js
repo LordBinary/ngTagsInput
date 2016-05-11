@@ -722,17 +722,17 @@ tagsInput.directive('autoComplete', ["$document", "$timeout", "$sce", "$q", "tag
                         suggestionList.reset();
                     }
                 })
-                .on('input-click', function() {
-                    if(!suggestionList.visible){
-                        var value = tagsInput.getCurrentTagText();
-                        if (options.loadOnFocus && shouldLoadSuggestions(value)) {
-                            suggestionList.load(value, tagsInput.getTags());
-                        }
-                        suggestionList.load(tagsInput.getCurrentTagText(), tagsInput.getTags());
-                    }
-                    else
-                        suggestionList.reset();
-                })
+                //.on('input-click', function() {
+                //    if(!suggestionList.visible){
+                //        var value = tagsInput.getCurrentTagText();
+                //        if (options.loadOnFocus && shouldLoadSuggestions(value)) {
+                //            suggestionList.load(value, tagsInput.getTags());
+                //        }
+                //        suggestionList.load(tagsInput.getCurrentTagText(), tagsInput.getTags());
+                //    }
+                //    else
+                //        suggestionList.reset();
+                //})
                 .on('input-focus', function() {
                     var value = tagsInput.getCurrentTagText();
                     if (options.loadOnFocus && shouldLoadSuggestions(value)) {
